@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react";
-import { useCountdownSeconds, useKeyPress } from "./hooks";
-import { ScoreContainer, ScoreCell, Timer, Bank } from "./components.styled";
+import { useState } from "react";
+import { useKeyPress } from "./hooks";
+import { ScoreContainer, ScoreCell, Bank } from "./components.styled";
+import { CountdownTimer } from "./CountdownTimer";
+import { Key } from "./types";
 import "./App.css";
 
 function App() {
   const cellValues = [128, 64, 32, 16, 4, 2, 0];
   const lastIndex = cellValues.length - 1;
 
-  const [seconds, setSeconds] = useState<number>(30);
   const [scoreIndex, setScoreIndex] = useState<number>(lastIndex);
   const [bank, setBank] = useState<number>(0);
-  const timer = useCountdownSeconds(seconds);
-
-  const startTimer = () => {
-    if (!!seconds) setSeconds(seconds - 1);
-  };
-
-  useKeyPress(() => {
-    setInterval(startTimer, 1000);
-  }, "s");
 
   useKeyPress(() => {
     //вынесла в отдельные переменные, чтобы избежать хуков в кондишенах
@@ -32,7 +24,7 @@ function App() {
 
     setScoreIndex(valueIndex);
     setBank(bankSum);
-  }, "y");
+  }, Key.Y);
 
   useKeyPress(() => {
     if (scoreIndex === lastIndex) {
@@ -40,23 +32,23 @@ function App() {
     }
 
     setScoreIndex(scoreIndex + 1);
-  }, "n");
+  }, Key.N);
 
   useKeyPress(() => {
     setScoreIndex(lastIndex);
     setBank(bank + cellValues[scoreIndex]);
-  }, "b");
+  }, Key.B);
 
   return (
     <>
       <ScoreContainer>
         {cellValues.map((value, index) => (
-          <ScoreCell $isActive={scoreIndex <= index} key={value}>
+          <ScoreCell $isActive={scoreIndex <= index} key={value + index}>
             {value}
           </ScoreCell>
         ))}
       </ScoreContainer>
-      <Timer>{seconds}</Timer>
+      <CountdownTimer />
       <Bank>{bank}</Bank>
     </>
   );
