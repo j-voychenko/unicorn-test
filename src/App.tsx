@@ -20,17 +20,18 @@ function App() {
     setInterval(startTimer, 1000);
   }, "s");
 
-  //   useEffect( () => {
-  //     const timer = setInterval( startTimer, 1000 );
-  //     return () => clearInterval( timer );
-  //  }, [ startTimer ] );
-
   useKeyPress(() => {
+    //вынесла в отдельные переменные, чтобы избежать хуков в кондишенах
+    let bankSum = bank;
+    let valueIndex = scoreIndex - 1;
+
     if (scoreIndex === 0) {
-      setBank(bank + cellValues[scoreIndex]);
+      bankSum += bank + cellValues[scoreIndex];
+      valueIndex = lastIndex;
     }
 
-    setScoreIndex(scoreIndex - 1);
+    setScoreIndex(valueIndex);
+    setBank(bankSum);
   }, "y");
 
   useKeyPress(() => {
