@@ -11,10 +11,9 @@ function App() {
 
   const [scoreIndex, setScoreIndex] = useState<number>(lastIndex);
   const [bank, setBank] = useState<number>(0);
-  const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
+  const [isGameStarted, setIsGameStarted] = useState<boolean>(true);
 
   useKeyPress(() => {
-    //вынесла в отдельные переменные, чтобы избежать хуков в кондишенах
     let valueIndex = scoreIndex - 1;
 
     if (scoreIndex === 0) {
