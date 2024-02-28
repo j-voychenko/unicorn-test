@@ -37,7 +37,10 @@ function App() {
       />
       <CountdownTimer
         isGameStarted={isGameStarted}
+        lastIndex={lastIndex}
         setIsGameStarted={setIsGameStarted}
+        setBank={setBank}
+        setScoreIndex={setScoreIndex}
       />
       <Bank>{bank}</Bank>
     </>

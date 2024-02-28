@@ -15,7 +15,10 @@ let interval = 0;
 
 export const CountdownTimer = ({
   isGameStarted,
+  lastIndex,
   setIsGameStarted,
+  setBank,
+  setScoreIndex,
 }: CountdownTimerType) => {
   const [timer, setTimer] = useState<number>(MINUTES_IN_MS);
 
@@ -24,7 +27,9 @@ export const CountdownTimer = ({
 
   useKeyPress(() => {
     if (!isGameStarted) {
+      setTimer(MINUTES_IN_MS);
       setIsGameStarted(true);
+
       interval = setInterval(() => {
         setTimer((timer) => timer - 1000);
       }, 1000);
@@ -40,6 +45,8 @@ export const CountdownTimer = ({
 
   const onStartNewGameClick = () => {
     setTimer(MINUTES_IN_MS);
+    setBank(0);
+    setScoreIndex(lastIndex);
   };
 
   return (

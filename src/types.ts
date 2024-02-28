@@ -17,5 +17,8 @@ export type ScoreType = {
 
 export type CountdownTimerType = {
   isGameStarted: boolean;
+  lastIndex: number;
   setIsGameStarted: (isGameStarted: boolean) => void;
+  setBank: (bank: number) => void;
+  setScoreIndex: (scoreIndex: number) => void;
 };
