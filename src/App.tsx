@@ -13,7 +13,7 @@ function App() {
 
   const [bank, setBank] = useState<number>(0);
   const [scoreIndex, setScoreIndex] = useState<number>(lastIndex);
-  const [isGameStarted, setIsGameStarted] = useState<boolean>(true);
+  const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
 
   useKeyPress(() => {
     if (!isGameStarted) {
@@ -35,7 +35,10 @@ function App() {
         setScoreIndex={setScoreIndex}
         setBank={setBank}
       />
-      <CountdownTimer setIsGameStarted={setIsGameStarted} />
+      <CountdownTimer
+        isGameStarted={isGameStarted}
+        setIsGameStarted={setIsGameStarted}
+      />
       <Bank>{bank}</Bank>
     </>
   );
