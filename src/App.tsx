@@ -11,6 +11,7 @@ function App() {
 
   const [scoreIndex, setScoreIndex] = useState<number>(lastIndex);
   const [bank, setBank] = useState<number>(0);
+  const [isGameStarted, setIsGameStarted] = useState<boolean>(true);
 
   useKeyPress(() => {
     //вынесла в отдельные переменные, чтобы избежать хуков в кондишенах
@@ -21,6 +22,10 @@ function App() {
       valueIndex = lastIndex;
     }
 
+    if (!isGameStarted) {
+      return;
+    }
+
     setScoreIndex(valueIndex);
   }, Key.Y);
 
@@ -29,10 +34,18 @@ function App() {
       return;
     }
 
+    if (!isGameStarted) {
+      return;
+    }
+
     setScoreIndex(scoreIndex + 1);
   }, Key.N);
 
   useKeyPress(() => {
+    if (!isGameStarted) {
+      return;
+    }
+
     setScoreIndex(lastIndex);
     setBank(bank + cellValues[scoreIndex]);
   }, Key.B);
@@ -46,7 +59,7 @@ function App() {
           </ScoreCell>
         ))}
       </ScoreContainer>
-      <CountdownTimer />
+      <CountdownTimer setIsGameStarted={setIsGameStarted} />
       <Bank>{bank}</Bank>
     </>
   );

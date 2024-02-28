@@ -5,29 +5,31 @@ import { Key } from "./types";
 import { formatSeconds, getReturnValues } from "./utils";
 
 //три минуты по шестьдесят секуед на тысячу милисекунд
-const MINUTES_IN_MS = 5 * 1000;
-const dateTimeAfterThreeMinutes = new Date().getTime() + MINUTES_IN_MS;
-const NOW = new Date().getTime();
+const MINUTES_IN_MS = 3 * 60 * 1000;
 let interval = 0;
 
-export const CountdownTimer = () => {
-  const [timer, setTimer] = useState<number>(dateTimeAfterThreeMinutes - NOW);
+export const CountdownTimer = ({
+  setIsGameStarted,
+}: {
+  setIsGameStarted: (isGameStarted: boolean) => void;
+}) => {
+  const [timer, setTimer] = useState<number>(MINUTES_IN_MS);
 
-  const countDownTimer = new Date(dateTimeAfterThreeMinutes).getTime();
   const [minutes, seconds] = getReturnValues(timer);
   const formattedSeconds = formatSeconds(seconds);
 
   useKeyPress(() => {
     interval = setInterval(() => {
-      setTimer(countDownTimer - new Date().getTime());
+      setTimer((timer) => timer - 1000);
     }, 1000);
   }, Key.S);
 
   useEffect(() => {
-    if (minutes === 0 && seconds === 0) {
+    if (!timer) {
       clearInterval(interval);
+      setIsGameStarted(false);
     }
-  }, [minutes, seconds]);
+  }, [timer]);
 
   return (
     <Timer>
