@@ -1,6 +1,6 @@
 import { ScoreCell, ScoreContainer } from "./components.styled";
-import { useKeyPress } from "./hooks";
-import { Key, ScoreType } from "./types";
+import { useKeyPress } from "../hooks";
+import { Key, ScoreType } from "../types";
 
 export const Score = ({
   isGameStarted,

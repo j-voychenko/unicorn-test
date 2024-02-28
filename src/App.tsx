@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useKeyPress } from "./hooks";
-import { Bank } from "./components.styled";
-import { CountdownTimer } from "./CountdownTimer";
+import { Bank } from "./components/components.styled";
+import { CountdownTimer } from "./components/CountdownTimer";
+import { Score } from "./components/Score";
 import { Key } from "./types";
 import "./App.css";
-import { Score } from "./Score";
 
 const CELL_VALUES = [128, 64, 32, 16, 4, 2, 0];
 

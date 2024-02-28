@@ -5,9 +5,9 @@ import {
   Timer,
   StartNewGame,
 } from "./components.styled";
-import { useKeyPress } from "./hooks";
-import { CountdownTimerType, Key } from "./types";
-import { formatSeconds, getReturnValues } from "./utils";
+import { useKeyPress } from "../hooks";
+import { CountdownTimerType, Key } from "../types";
+import { formatSeconds, getReturnValues } from "../utils";
 
 //три минуты по шестьдесят секуед на тысячу милисекунд
 const MINUTES_IN_MS = 3 * 60 * 1000;
