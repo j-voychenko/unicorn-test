@@ -40,3 +40,20 @@ export const Bank = styled.div`
   display: flex;
   justify-content: space-around;
 `;
+
+export const TimeIsOver = styled.p`
+  margin: 0;
+`;
+
+export const StartNewGame = styled.p`
+  border-bottom: 3px solid rgba(255, 255, 255, 0.87);
+  margin: 0;
+  cursor: pointer;
+`;
+
+export const TimeIsOverContainer = styled.div`
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

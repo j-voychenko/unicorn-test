@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import { Timer } from "./components.styled";
+import {
+  TimeIsOver,
+  TimeIsOverContainer,
+  Timer,
+  StartNewGame,
+} from "./components.styled";
 import { useKeyPress } from "./hooks";
 import { Key } from "./types";
 import { formatSeconds, getReturnValues } from "./utils";
 
 //три минуты по шестьдесят секуед на тысячу милисекунд
-const MINUTES_IN_MS = 3 * 60 * 1000;
+const MINUTES_IN_MS = 5 * 1000;
 let interval = 0;
 
 export const CountdownTimer = ({
@@ -33,9 +38,24 @@ export const CountdownTimer = ({
     }
   }, [timer]);
 
+  const onStartNewGameClick = () => {
+    setTimer(MINUTES_IN_MS);
+  };
+
   return (
-    <Timer>
-      {minutes}:{formattedSeconds}
-    </Timer>
+    <>
+      {!timer ? (
+        <TimeIsOverContainer>
+          <TimeIsOver>Игра закончена,&nbsp;</TimeIsOver>
+          <StartNewGame onClick={onStartNewGameClick}>
+            попробуйте еще раз
+          </StartNewGame>
+        </TimeIsOverContainer>
+      ) : (
+        <Timer>
+          {minutes}:{formattedSeconds}
+        </Timer>
+      )}
+    </>
   );
 };
