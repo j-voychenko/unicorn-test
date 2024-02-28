@@ -4,3 +4,13 @@ export enum Key {
   S = "s",
   B = "b",
 }
+
+export type ScoreType = {
+  isGameStarted: boolean;
+  scoreIndex: number;
+  lastIndex: number;
+  bank: number;
+  cellValues: number[];
+  setScoreIndex: (scoreIndex: number) => void;
+  setBank: (bank: number) => void;
+};
