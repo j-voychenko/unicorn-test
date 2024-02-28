@@ -14,16 +14,14 @@ function App() {
 
   useKeyPress(() => {
     //вынесла в отдельные переменные, чтобы избежать хуков в кондишенах
-    let bankSum = bank;
     let valueIndex = scoreIndex - 1;
 
     if (scoreIndex === 0) {
-      bankSum += bank + cellValues[scoreIndex];
+      setBank(bank + cellValues[scoreIndex]);
       valueIndex = lastIndex;
     }
 
     setScoreIndex(valueIndex);
-    setBank(bankSum);
   }, Key.Y);
 
   useKeyPress(() => {

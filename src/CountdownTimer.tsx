@@ -8,7 +8,7 @@ import { formatSeconds, getReturnValues } from "./utils";
 const MINUTES_IN_MS = 5 * 1000;
 const dateTimeAfterThreeMinutes = new Date().getTime() + MINUTES_IN_MS;
 const NOW = new Date().getTime();
-let interval;
+let interval = 0;
 
 export const CountdownTimer = () => {
   const [timer, setTimer] = useState<number>(dateTimeAfterThreeMinutes - NOW);
@@ -24,12 +24,10 @@ export const CountdownTimer = () => {
   }, Key.S);
 
   useEffect(() => {
-    console.log(timer);
     if (minutes === 0 && seconds === 0) {
-      //   console.log(timer);
       clearInterval(interval);
     }
-  }, [timer]);
+  }, [minutes, seconds]);
 
   return (
     <Timer>
