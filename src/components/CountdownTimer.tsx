@@ -7,7 +7,7 @@ import {
 } from "./components.styled";
 import { useKeyPress } from "../hooks";
 import { CountdownTimerType, Key } from "../types";
-import { formatSeconds, getReturnValues } from "../utils";
+import { formatSeconds, getTime } from "../utils";
 
 //три минуты по шестьдесят секуед на тысячу милисекунд
 const MINUTES_IN_MS = 3 * 60 * 1000;
@@ -22,7 +22,7 @@ export const CountdownTimer = ({
 }: CountdownTimerType) => {
   const [timer, setTimer] = useState<number>(MINUTES_IN_MS);
 
-  const [minutes, seconds] = getReturnValues(timer);
+  const [minutes, seconds] = getTime(timer);
   const formattedSeconds = formatSeconds(seconds);
 
   useKeyPress(() => {

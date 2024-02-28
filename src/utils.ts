@@ -1,4 +1,4 @@
-export const getReturnValues = (timer: number) => {
+export const getTime = (timer: number) => {
   const minutes = Math.floor((timer % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timer % (1000 * 60)) / 1000);
 
