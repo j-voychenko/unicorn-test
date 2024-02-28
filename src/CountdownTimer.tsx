@@ -19,6 +19,8 @@ export const CountdownTimer = ({
   const formattedSeconds = formatSeconds(seconds);
 
   useKeyPress(() => {
+    setIsGameStarted(true);
+
     interval = setInterval(() => {
       setTimer((timer) => timer - 1000);
     }, 1000);
